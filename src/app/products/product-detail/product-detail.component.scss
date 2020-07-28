@@ -18,6 +18,9 @@
   display: flex;
   flex-direction: column;
   font-size: 18px;
+  input.mat-input-element {
+    text-align: left !important;
+  }
 
   .buttons-container {
     margin-top: 2rem;

@@ -30,6 +30,8 @@
             placeholder="Nome do produto"
             required
             [(ngModel)]="product.price"
+            currencyMask
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
           />
           <mat-error *ngIf="editForm.controls.price.hasError('required')">
             Campo obrigatório.

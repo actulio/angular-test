@@ -1,18 +1,37 @@
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  margin: 5rem 0;
 
   .spinner {
     margin-top: 10rem;
   }
 }
+
+.add-container {
+  display: flex;
+  width: 80%;
+  margin-left: 5rem;
+  margin-bottom: 5rem;
+  .mat-form-field:not(:first-child) {
+    margin-left: 5rem;
+  }
+  .panel-icon {
+    color: #7c7c7c;
+  }
+  .create-button {
+    margin-top: 1rem;
+    width: 100%;
+  }
+}
+
 table {
   width: 80%;
   margin-left: 5rem;
-  margin-top: 5rem;
 
   .options-container {
     display: flex;

@@ -4,6 +4,62 @@
     <mat-spinner class="spinner"></mat-spinner>
   </ng-template>
   <ng-template #elseBlock>
+    <div class="add-container">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle [(expanded)]="panelOpenState">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Cadastrar novo produto
+            </mat-panel-title>
+            <div *ngIf="!panelOpenState">
+              <mat-icon class="panel-icon">add</mat-icon>
+            </div>
+            <div *ngIf="panelOpenState">
+              <mat-icon class="panel-icon">remove</mat-icon>
+            </div>
+          </mat-expansion-panel-header>
+
+          <form [formGroup]="addForm">
+            <mat-form-field appearance="standard">
+              <input
+                matInput
+                required
+                placeholder="Nome do produto"
+                formControlName="name"
+                [(ngModel)]="newProduct.name"
+              />
+              <mat-error *ngIf="addForm.controls.name.hasError('required')">
+                Campo obrigatório.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+              <input
+                matInput
+                required
+                placeholder="Preço do produto"
+                formControlName="price"
+                [(ngModel)]="newProduct.price"
+                currencyMask
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+              />
+              <mat-error *ngIf="addForm.controls.price.hasError('required')">
+                Campo obrigatório.
+              </mat-error>
+            </mat-form-field>
+          </form>
+          <button
+            class="create-button"
+            (click)="create()"
+            [disabled]="!addForm.valid"
+            mat-raised-button
+            color="primary"
+          >
+            Cadastrar
+          </button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
     <table mat-table [dataSource]="products" class="mat-elevation-z8">
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
@@ -17,7 +73,9 @@
 
       <ng-container matColumnDef="price">
         <mat-header-cell *matHeaderCellDef> Preço </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.price }} </mat-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.price | currency: 'BRL' }}
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="options">
