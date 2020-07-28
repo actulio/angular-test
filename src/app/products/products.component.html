@@ -1,0 +1,59 @@
+<div class="container">
+  <div *ngIf="!isDataLoaded; then thenBlock; else elseBlock"></div>
+  <ng-template #thenBlock>
+    <mat-spinner class="spinner"></mat-spinner>
+  </ng-template>
+  <ng-template #elseBlock>
+    <table mat-table [dataSource]="products" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Preço </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.price }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="options">
+        <mat-header-cell *matHeaderCellDef> Opções </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div class="options-container">
+            <div>
+              <a routerLink="/products/{{ element.id }}">
+                <mat-icon
+                  class="icon-display"
+                  color="primary"
+                  aria-hidden="false"
+                  aria-label="Edit icon"
+                >
+                  create
+                </mat-icon>
+              </a>
+            </div>
+            <div>
+              <a href="javascript:void(0)" (click)="delete(element)">
+                <mat-icon
+                  class="icon-display"
+                  color="warn"
+                  aria-hidden="false"
+                  aria-label="Delete icon"
+                >
+                  delete
+                </mat-icon>
+              </a>
+            </div>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </table>
+  </ng-template>
+</div>

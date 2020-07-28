@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="container">
+    <div *ngIf="!isDataLoaded; then thenBlock; else elseBlock"></div>
+
+    <ng-template #thenBlock>
+      <mat-spinner class="spinner"></mat-spinner>
+    </ng-template>
+
+    <ng-template #elseBlock>
+      <form [formGroup]="editForm" class="edit-form">
+        <mat-form-field appearance="standard" style="width: 250px !important;">
+          <mat-label>Nome do Produto</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Nome do produto"
+            required
+            [(ngModel)]="product.name"
+          />
+          <mat-error *ngIf="editForm.controls.name.hasError('required')">
+            Campo obrigatório.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+          <mat-label>Preço do Produto</mat-label>
+          <input
+            matInput
+            formControlName="price"
+            placeholder="Nome do produto"
+            required
+            [(ngModel)]="product.price"
+          />
+          <mat-error *ngIf="editForm.controls.price.hasError('required')">
+            Campo obrigatório.
+          </mat-error>
+        </mat-form-field>
+
+        <div class="buttons-container">
+          <button (click)="goBack()" mat-raised-button>Voltar</button>
+          <button
+            (click)="save()"
+            [disabled]="!editForm.valid"
+            mat-raised-button
+            color="primary"
+          >
+            Salvar
+          </button>
+        </div>
+      </form>
+    </ng-template>
+  </div>
+</div>

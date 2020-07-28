@@ -1,0 +1,59 @@
+.navbar {
+  position: fixed;
+  background-color: #3f51b5;
+  top: 0;
+  height: 100vh;
+  width: 5rem;
+
+  transition: width 600ms ease;
+  overflow: hidden;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  span {
+    display: none;
+    margin-left: 4rem;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.3ch;
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    margin-top: 5rem;
+    li {
+      cursor: pointer;
+      width: 100%;
+    }
+  }
+  a {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    text-decoration: none;
+    &:hover {
+      background-color: #354497;
+
+      span,
+      .icon-display {
+        color: #cce7ff;
+      }
+    }
+  }
+  &:hover {
+    width: 10rem;
+    span {
+      display: inline-block;
+    }
+  }
+}
+.icon-display {
+  position: absolute;
+  transform: scale(2);
+  left: 1.5rem;
+  color: aliceblue;
+}
