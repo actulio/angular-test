@@ -28,7 +28,7 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.isDataLoaded = false;
-    this.getHero().add(() => {
+    this.getProduct().add(() => {
       this.editForm.setValue({
         name: this.product.name,
         price: this.product.price,
@@ -37,7 +37,7 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  getHero() {
+  getProduct() {
     const id = +this.route.snapshot.paramMap.get('id');
     return this.productsService
       .getProduct(id)

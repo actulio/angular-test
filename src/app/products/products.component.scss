@@ -19,6 +19,10 @@
   margin-bottom: 5rem;
   .mat-form-field:not(:first-child) {
     margin-left: 5rem;
+    .mat-form-field-label .mat-form-field-infix .mat-input-element,
+    .mat-error {
+      text-align: right !important;
+    }
   }
   .panel-icon {
     color: #7c7c7c;

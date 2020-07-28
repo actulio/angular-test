@@ -1,5 +1,5 @@
 .navbar {
-  position: fixed;
+  position: absolute;
   background-color: #3f51b5;
   top: 0;
   height: 100vh;
@@ -28,6 +28,7 @@
     li {
       cursor: pointer;
       width: 100%;
+      margin-bottom: 1rem;
     }
   }
   a {
@@ -56,4 +57,12 @@
   transform: scale(2);
   left: 1.5rem;
   color: white;
+}
+
+.is-active {
+  background-color: #354497;
+  span,
+  .icon-display {
+    color: #cce7ff;
+  }
 }

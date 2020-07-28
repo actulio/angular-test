@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
 
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -18,7 +19,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { HomeComponent } from './home/home.component';
+import { CartComponent } from './cart/cart.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
@@ -27,7 +28,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
   declarations: [
     AppComponent,
     SidebarComponent,
-    HomeComponent,
+    CartComponent,
     ProductsComponent,
     ProductDetailComponent,
   ],
@@ -43,6 +44,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatButtonModule,
+    MatListModule,
     HttpClientModule,
     CurrencyMaskModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
