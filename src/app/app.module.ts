@@ -11,6 +11,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -19,7 +21,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { CartComponent } from './cart/cart.component';
+import { CartComponent, NotFoundDialog } from './cart/cart.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
@@ -31,6 +33,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     CartComponent,
     ProductsComponent,
     ProductDetailComponent,
+    NotFoundDialog,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     MatExpansionModule,
     MatButtonModule,
     MatListModule,
+    MatCardModule,
+    MatDialogModule,
     HttpClientModule,
     CurrencyMaskModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {

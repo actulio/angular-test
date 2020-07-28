@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { MatTable } from '@angular/material/table';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { ProductsService } from '../services/products.service';
 import { Product } from '../interfaces/product';
 
@@ -13,8 +16,13 @@ export interface AddedProducts extends Product {
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    public dialog: MatDialog
+  ) {}
+  @ViewChild(MatTable) table: MatTable<any>;
 
+  displayedColumns = ['quantity', 'id', 'name', 'price', 'options'];
   products: AddedProducts[];
   total: number;
   addForm = new FormGroup({
@@ -44,22 +52,46 @@ export class CartComponent implements OnInit {
     const quantity = this.addForm.controls['quantity'].value;
     return this.productsService.getProduct(id).subscribe((product) => {
       if (product) {
-        const productIdx = this.products.findIndex((e) => e.id === id);
+        const productIdx = this.products.findIndex((e) => e.id == id);
         if (productIdx !== -1) {
           this.products[productIdx].quantity += quantity;
         } else {
           this.products.push({ ...product, quantity });
         }
         this.total = this.calculateTotal();
+        this.table.renderRows();
+        this.addForm.reset();
       } else {
-        console.log('produto nao encontrado');
+        this.openDialog(id);
       }
     });
   }
 
-  calculateTotal() {
+  removeProduct(id: number) {
+    this.products.splice(id, 1);
+    this.total = this.calculateTotal();
+    this.table.renderRows();
+  }
+
+  private calculateTotal() {
     return this.products.reduce((acc, curr) => {
       return acc + curr.price * curr.quantity;
     }, 0);
   }
+
+  private openDialog(id: number) {
+    this.dialog.open(NotFoundDialog, {
+      data: {
+        id,
+      },
+    });
+  }
+}
+
+@Component({
+  selector: 'not-found-dialog',
+  templateUrl: 'not-found-dialog.html',
+})
+export class NotFoundDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { id: number }) {}
 }
