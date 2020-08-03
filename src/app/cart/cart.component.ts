@@ -41,6 +41,17 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.products = [];
     this.total = 0;
+    this.products = [
+      { quantity: 1, id: 1, name: 'Arroz', price: 2 },
+      { quantity: 1, id: 2, name: 'Macarrao', price: 3.5 },
+      { quantity: 1, id: 3, name: 'Feijao', price: 4.56 },
+      { quantity: 1, id: 4, name: 'Carne', price: 12.0 },
+      { quantity: 1, id: 5, name: 'Frango', price: 25.56 },
+      { quantity: 1, id: 6, name: 'Farofa', price: 1.23 },
+      { quantity: 1, id: 7, name: 'Farofa', price: 1.23 },
+      { quantity: 1, id: 8, name: 'Farofa', price: 1.23 },
+      { quantity: 1, id: 9, name: 'Farofa', price: 1.23 },
+    ];
   }
 
   addProduct(): void {

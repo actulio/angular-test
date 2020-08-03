@@ -1,1 +1,10 @@
-
+.container {
+  @media (max-width: 650px) {
+    display: grid;
+    grid-template-rows: 1fr 5rem;
+  }
+  @media (min-width: 651px) {
+    display: grid;
+    grid-template-columns: minmax(5rem, 10rem) 1fr;
+  }
+}

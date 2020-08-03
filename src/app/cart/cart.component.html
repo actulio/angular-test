@@ -1,33 +1,35 @@
 <div class="container">
   <div class="product-container">
-    <form [formGroup]="addForm" (ngSubmit)="addProduct()">
-      <mat-form-field appearance="standard">
-        <mat-label>Id</mat-label>
-        <input matInput placeholder="Id" required formControlName="id" />
-        <mat-error *ngIf="addForm.controls.id.hasError('required')">
-          Campo obrigatório.
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="standard">
-        <mat-label>Quantidade</mat-label>
-        <input
-          matInput
-          placeholder="Quantidade"
-          required
-          type="number"
-          min="0"
-          formControlName="quantity"
-        />
-        <mat-error *ngIf="addForm.controls.quantity.hasError('required')">
-          Campo obrigatório.
-        </mat-error>
-        <mat-error *ngIf="addForm.controls.quantity.hasError('min')">
-          Quantidade não pode ser menor que 1.
-        </mat-error>
-        <mat-error *ngIf="addForm.controls.quantity.hasError('pattern')">
-          Campo aceita apenas números.
-        </mat-error>
-      </mat-form-field>
+    <form [formGroup]="addForm" (ngSubmit)="addProduct()" class="form">
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Id</mat-label>
+          <input matInput placeholder="Id" required formControlName="id" />
+          <mat-error *ngIf="addForm.controls.id.hasError('required')">
+            Campo obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Quantidade</mat-label>
+          <input
+            matInput
+            placeholder="Quantidade"
+            required
+            type="number"
+            min="0"
+            formControlName="quantity"
+          />
+          <mat-error *ngIf="addForm.controls.quantity.hasError('required')">
+            Campo obrigatório.
+          </mat-error>
+          <mat-error *ngIf="addForm.controls.quantity.hasError('min')">
+            Quantidade não pode ser menor que 1.
+          </mat-error>
+          <mat-error *ngIf="addForm.controls.quantity.hasError('pattern')">
+            Campo aceita apenas números.
+          </mat-error>
+        </mat-form-field>
+      </div>
       <button
         type="reset"
         (click)="addProduct()"
